@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07090b">
+<title>Para mi amor 🌻</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap');
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#07090b;
+}
+
+body{
+    color:white;
+    font-family:Montserrat,Arial,sans-serif;
+}
+
+.scene{
+    position:relative;
+    width:100%;
+    height:100svh;
+    min-height:620px;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 48%,
+            #3c3217 0%,
+            #15140d 27%,
+            #090b0d 57%,
+            #040506 100%
+        );
+}
+
+/* LUZ CENTRAL */
+
+.glow{
+    position:absolute;
+    left:50%;
+    top:47%;
+    width:70vw;
+    height:70vw;
+    max-width:470px;
+    max-height:470px;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,205,48,.25),
+            rgba(255,190,30,.08) 35%,
+            transparent 70%
+        );
+
+    filter:blur(9px);
+
+    animation:pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes pulseGlow{
+    0%,100%{
+        transform:translate(-50%,-50%) scale(.94);
+        opacity:.65;
+    }
+    50%{
+        transform:translate(-50%,-50%) scale(1.08);
+        opacity:1;
+    }
+}
+
+/* RAYOS */
+
+.rays{
+    position:absolute;
+    inset:-20%;
+    pointer-events:none;
+
+    background:
+        conic-gradient(
+            from 180deg at 50% 48%,
+            transparent 0deg,
+            rgba(255,220,100,.08) 15deg,
+            transparent 29deg,
+            transparent 55deg,
+            rgba(255,220,100,.06) 70deg,
+            transparent 88deg,
+            transparent 120deg,
+            rgba(255,220,100,.06) 138deg,
+            transparent 157deg,
+            transparent 210deg,
+            rgba(255,220,100,.05) 230deg,
+            transparent 250deg
+        );
+
+    filter:blur(10px);
+    animation:rotateRays 25s linear infinite;
+}
+
+@keyframes rotateRays{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* PARTÍCULAS */
+
+.particle{
+    position:absolute;
+
+    width:3px;
+    height:3px;
+
+    border-radius:50%;
+
+    background:#ffd75a;
+
+    box-shadow:
+        0 0 7px #ffc928;
+
+    opacity:0;
+
+    animation:particleMove linear infinite;
+}
+
+@keyframes particleMove{
+
+    0%{
+        transform:
+            translate3d(0,35px,0)
+            scale(.5);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:.75;
+    }
+
+    75%{
+        opacity:.35;
+    }
+
+    100%{
+        transform:
+            translate3d(var(--moveX),-150px,0)
+            scale(1);
+
+        opacity:0;
+    }
+}
+
+/* FLORES DECORATIVAS */
+
+.flower{
+    position:absolute;
+
+    width:70px;
+    height:70px;
+
+    opacity:.82;
+
+    filter:
+        drop-shadow(
+            0 0 13px rgba(255,195,30,.18)
+        );
+
+    animation:flowerFloat 5s ease-in-out infinite;
+}
+
+@keyframes flowerFloat{
+
+    0%,100%{
+        transform:translateY(0) rotate(-2deg);
+    }
+
+    50%{
+        transform:translateY(-10px) rotate(3deg);
+    }
+}
+
+.petal{
+    position:absolute;
+
+    left:22px;
+    top:10px;
+
+    width:26px;
+    height:40px;
+
+    border-radius:
+        55% 55% 45% 45%;
+
+    background:
+        linear-gradient(
+            #ffe04a,
+            #e9a916
+        );
+
+    transform-origin:
+        13px 30px;
+}
+
+.f1{transform:rotate(0deg)}
+.f2{transform:rotate(45deg)}
+.f3{transform:rotate(90deg)}
+.f4{transform:rotate(135deg)}
+.f5{transform:rotate(180deg)}
+.f6{transform:rotate(225deg)}
+.f7{transform:rotate(270deg)}
+.f8{transform:rotate(315deg)}
+
+.flowerCenter{
+    position:absolute;
+
+    left:25px;
+    top:25px;
+
+    width:25px;
+    height:25px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #81581d,
+            #38240e 70%
+        );
+
+    z-index:2;
+}
+
+/* POSICIONES */
+
+.flower.one{
+    left:4%;
+    top:21%;
+    transform:scale(.62);
+}
+
+.flower.two{
+    right:3%;
+    top:27%;
+    transform:scale(.7);
+    animation-delay:-2s;
+}
+
+.flower.three{
+    left:-4%;
+    bottom:17%;
+    transform:scale(.82);
+    animation-delay:-1s;
+}
+
+.flower.four{
+    right:-3%;
+    bottom:20%;
+    transform:scale(.72);
+    animation-delay:-3s;
+}
+
+/* CORAZÓN DE PARTÍCULAS */
+
+.heart{
+    position:absolute;
+
+    left:50%;
+    top:45%;
+
+    width:280px;
+    height:230px;
+
+    transform:
+        translate(-50%,-50%);
+
+    animation:
+        heartBeat 3s ease-in-out infinite;
+}
+
+@keyframes heartBeat{
+
+    0%,100%{
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translate(-50%,-50%)
+            scale(1.035);
+    }
+}
+
+.heartDot{
+    position:absolute;
+
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    background:#ffd63e;
+
+    box-shadow:
+        0 0 8px #ffc928,
+        0 0 18px rgba(255,200,35,.45);
+
+    transform:
+        translate(-50%,-50%)
+        scale(0);
+
+    animation:
+        appearHeart .8s forwards;
+}
+
+@keyframes appearHeart{
+
+    to{
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+    }
+}
+
+/* TEXTO */
+
+.content{
+    position:absolute;
+
+    left:50%;
+    top:48%;
+
+    width:82%;
+
+    transform:
+        translate(-50%,-50%);
+
+    text-align:center;
+
+    z-index:10;
+
+    pointer-events:none;
+}
+
+.small{
+    font-size:9px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+
+    color:#f5d98b;
+
+    opacity:0;
+
+    animation:
+        textIn 1.2s
+        3s forwards;
+}
+
+h1{
+    margin:10px 0 12px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:
+        clamp(
+            3rem,
+            15vw,
+            5rem
+        );
+
+    line-height:.82;
+
+    font-weight:600;
+
+    color:#fff8df;
+
+    text-shadow:
+        0 0 25px rgba(255,208,75,.22);
+
+    opacity:0;
+
+    animation:
+        textIn 1.3s
+        3.4s forwards;
+}
+
+.message{
+    margin:auto;
+
+    max-width:310px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:19px;
+
+    line-height:1.35;
+
+    color:#eee8d5;
+
+    opacity:0;
+
+    animation:
+        textIn 1.3s
+        4s forwards;
+}
+
+@keyframes textIn{
+
+    from{
+        opacity:0;
+        transform:translateY(16px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+/* BOTÓN DE MÚSICA */
+
+.music{
+    position:absolute;
+
+    top:
+        calc(
+            18px +
+            env(safe-area-inset-top)
+        );
+
+    right:18px;
+
+    width:43px;
+    height:43px;
+
+    border:
+        1px solid
+        rgba(255,230,150,.35);
+
+    border-radius:50%;
+
+    background:
+        rgba(0,0,0,.25);
+
+    color:#ffe9a3;
+
+    font-size:17px;
+
+    z-index:30;
+
+    backdrop-filter:blur(8px);
+
+    cursor:pointer;
+}
+
+/* SECRETO */
+
+.secret{
+    position:absolute;
+
+    right:18px;
+
+    bottom:
+        calc(
+            18px +
+            env(safe-area-inset-bottom)
+        );
+
+    width:40px;
+    height:40px;
+
+    border:0;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,210,65,.08);
+
+    color:#ffd84c;
+
+    font-size:18px;
+
+    opacity:.65;
+
+    z-index:30;
+
+    cursor:pointer;
+
+    animation:
+        secretPulse 3s infinite;
+}
+
+@keyframes secretPulse{
+
+    50%{
+        box-shadow:
+            0 0 22px
+            rgba(255,200,50,.18);
+    }
+
+}
+
+/* VENTANA SECRETA */
+
+.secretBox{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:82%;
+
+    padding:26px 21px;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.88);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:50;
+
+    text-align:center;
+
+    border:
+        1px solid
+        rgba(255,220,130,.2);
+
+    border-radius:24px;
+
+    background:
+        rgba(9,10,9,.91);
+
+    backdrop-filter:blur(16px);
+
+    box-shadow:
+        0 20px 70px
+        rgba(0,0,0,.5);
+
+    transition:.45s;
+}
+
+.secretBox.show{
+    opacity:1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    pointer-events:auto;
+}
+
+.secretBox h2{
+    margin:0 0 10px;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:31px;
+
+    color:#ffe8a0;
+}
+
+.secretBox p{
+    margin:0;
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size:18px;
+
+    line-height:1.45;
+
+    color:#eee8d5;
+}
+
+.close{
+    margin-top:18px;
+
+    padding:9px 18px;
+
+    border:
+        1px solid
+        rgba(255,220,130,.25);
+
+    border-radius:999px;
+
+    background:transparent;
+
+    color:#ffe8a0;
+
+    font-size:10px;
+}
+
+/* BOTÓN VOLVER */
+
+.back{
+    position:absolute;
+
+    left:50%;
+
+    bottom:
+        calc(
+            18px +
+            env(safe-area-inset-bottom)
+        );
+
+    transform:translateX(-50%);
+
+    z-index:20;
+
+    border:
+        1px solid
+        rgba(255,220,130,.22);
+
+    border-radius:999px;
+
+    padding:9px 17px;
+
+    background:
+        rgba(0,0,0,.2);
+
+    color:#e9dfbf;
+
+    font-size:9px;
+
+    opacity:.65;
+
+    text-decoration:none;
+}
+
+@media(max-height:700px){
+
+    .heart{
+        top:43%;
+        transform:
+            translate(-50%,-50%)
+            scale(.82);
+    }
+
+    .content{
+        top:47%;
+    }
+
+    .message{
+        font-size:17px;
+    }
+
+}
+
+@media(max-width:360px){
+
+    .heart{
+        transform:
+            translate(-50%,-50%)
+            scale(.72);
+    }
+
+    .message{
+        font-size:16px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<main class="scene" id="scene">
+
+    <div class="rays"></div>
+
+    <div class="glow"></div>
+
+    <div id="particles"></div>
+
+
+    <!-- FLORES DE LOS LADOS -->
+
+    <div class="flower one">
+        <i class="petal f1"></i>
+        <i class="petal f2"></i>
+        <i class="petal f3"></i>
+        <i class="petal f4"></i>
+        <i class="petal f5"></i>
+        <i class="petal f6"></i>
+        <i class="petal f7"></i>
+        <i class="petal f8"></i>
+        <i class="flowerCenter"></i>
+    </div>
+
+    <div class="flower two">
+        <i class="petal f1"></i>
+        <i class="petal f2"></i>
+        <i class="petal f3"></i>
+        <i class="petal f4"></i>
+        <i class="petal f5"></i>
+        <i class="petal f6"></i>
+        <i class="petal f7"></i>
+        <i class="petal f8"></i>
+        <i class="flowerCenter"></i>
+    </div>
+
+    <div class="flower three">
+        <i class="petal f1"></i>
+        <i class="petal f2"></i>
+        <i class="petal f3"></i>
+        <i class="petal f4"></i>
+        <i class="petal f5"></i>
+        <i class="petal f6"></i>
+        <i class="petal f7"></i>
+        <i class="petal f8"></i>
+        <i class="flowerCenter"></i>
+    </div>
+
+    <div class="flower four">
+        <i class="petal f1"></i>
+        <i class="petal f2"></i>
+        <i class="petal f3"></i>
+        <i class="petal f4"></i>
+        <i class="petal f5"></i>
+        <i class="petal f6"></i>
+        <i class="petal f7"></i>
+        <i class="petal f8"></i>
+        <i class="flowerCenter"></i>
+    </div>
+
+
+    <!-- CORAZÓN -->
+
+    <div
+        class="heart"
+        id="heart">
+    </div>
+
+
+    <!-- TEXTO -->
+
+    <section class="content">
+
+        <div class="small">
+            para mi preciosa que hace mis días más bonitos
+        </div>
+
+        <h1>
+            Mi noviesita 🌻
+        </h1>
+
+        <p class="message">
+            Quise hacerte esto porque te amo Y
+            porque quise ser creativo con detallitos 
+            que espero te gusten amor.
+
+            Porque cada pequeño detalle bonito
+            me hace pensar en ti mi vida.
+        </p>
+
+    </section>
+
+
+    <!-- MÚSICA -->
+
+    <button
+        class="music"
+        id="music"
+        aria-label="Activar música">
+
+        ♫
+
+    </button>
+
+
+    <!-- GIRASOL SECRETO -->
+
+    <button
+        class="secret"
+        id="secret"
+        aria-label="Abrir sorpresa">
+
+        🌻
+
+    </button>
+
+
+    <!-- MENSAJE SECRETO -->
+
+    <div
+        class="secretBox"
+        id="secretBox">
+
+        <h2>
+            Encontraste otro secreto 🌻
+        </h2>
+
+        <p>
+            Si encontraste este secretito
+            mi vida me debes 469 bechitos
+            te amo mi amorcita bella preciosa.
+
+            Me encantas amooooooooooooooooooooor.
+
+            💛
+        </p>
+
+        <button
+            class="close"
+            id="close">
+
+            cerrar
+
+        </button>
+
+    </div>
+
+
+    <!-- VOLVER -->
+
+    <a
+        href="index.html"
+        class="back">
+
+        ← volver
+
+    </a>
+
+</main>
+
+
+<script>
+
+/* =========================
+   PARTÍCULAS
+========================= */
+
+const particles =
+    document.getElementById(
+        "particles"
+    );
+
+for(
+    let i=0;
+    i<55;
+    i++
+){
+
+    const p =
+        document.createElement("i");
+
+    p.className =
+        "particle";
+
+    p.style.left =
+        (
+            Math.random()*100
+        ) + "%";
+
+    p.style.top =
+        (
+            45 +
+            Math.random()*60
+        ) + "%";
+
+    p.style.animationDuration =
+        (
+            4 +
+            Math.random()*7
+        ) + "s";
+
+    p.style.animationDelay =
+        (
+            Math.random()*6
+        ) + "s";
+
+    p.style.setProperty(
+        "--moveX",
+        (
+            Math.random()*80-40
+        ) + "px"
+    );
+
+    particles.appendChild(p);
+
+}
+
+
+/* =========================
+   CORAZÓN DE PARTÍCULAS
+========================= */
+
+const heart =
+    document.getElementById(
+        "heart"
+    );
+
+function heartPoint(t){
+
+    return {
+
+        x:
+            16 *
+            Math.pow(
+                Math.sin(t),
+                3
+            ),
+
+        y:
+            13 *
+            Math.cos(t)
+
+            -
+
+            5 *
+            Math.cos(2*t)
+
+            -
+
+            2 *
+            Math.cos(3*t)
+
+            -
+
+            Math.cos(4*t)
+
+    };
+
+}
+
+
+/* BORDE */
+
+for(
+    let i=0;
+    i<65;
+    i++
+){
+
+    const t =
+        2 *
+        Math.PI *
+        i /
+        65;
+
+    const point =
+        heartPoint(t);
+
+
+    const dot =
+        document.createElement("i");
+
+    dot.className =
+        "heartDot";
+
+
+    dot.style.left =
+        (
+            50 +
+            point.x * 5.3
+        ) + "%";
+
+
+    dot.style.top =
+        (
+            47 -
+            point.y * 4.6
+        ) + "%";
+
+
+    dot.style.animationDelay =
+        (
+            i * .035
+        ) + "s";
+
+
+    heart.appendChild(dot);
+
+}
+
+
+/* INTERIOR */
+
+for(
+    let r=1;
+    r<=4;
+    r++
+){
+
+    for(
+        let i=0;
+        i<18;
+        i++
+    ){
+
+        const t =
+            2 *
+            Math.PI *
+            i /
+            18
+            +
+            r*.16;
+
+        const point =
+            heartPoint(t);
+
+        const factor =
+            1 -
+            r*.16;
+
+
+        const dot =
+            document.createElement("i");
+
+        dot.className =
+            "heartDot";
+
+
+        dot.style.left =
+            (
+                50 +
+                point.x *
+                factor *
+                5.3
+            ) + "%";
+
+
+        dot.style.top =
+            (
+                47 -
+                point.y *
+                factor *
+                4.6
+            ) + "%";
+
+
+        dot.style.animationDelay =
+            (
+                1.5 +
+                r*.18 +
+                i*.025
+            ) + "s";
+
+
+        heart.appendChild(dot);
+
+    }
+
+}
+
+
+/* =========================
+   SECRETO
+========================= */
+
+const secret =
+    document.getElementById(
+        "secret"
+    );
+
+const secretBox =
+    document.getElementById(
+        "secretBox"
+    );
+
+const close =
+    document.getElementById(
+        "close"
+    );
+
+
+secret.onclick = () => {
+
+    secretBox.classList.add(
+        "show"
+    );
+
+};
+
+
+close.onclick = () => {
+
+    secretBox.classList.remove(
+        "show"
+    );
+
+};
+
+
+/* =========================
+   BOTÓN DE MÚSICA
+========================= */
+
+const music = document.getElementById("music");
+
+const audio = new Audio("musica.mp3");
+
+audio.loop = true;
+
+let musicOn = false;
+
+music.onclick = () => {
+
+    if (!musicOn) {
+
+        audio.play();
+
+        music.textContent = "🔊";
+
+        musicOn = true;
+
+    } else {
+
+        audio.pause();
+
+        music.textContent = "♫";
+
+        musicOn = false;
+
+    }
+
+};
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>Para ti 🌻</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap');
+
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
+body{
+    font-family:Montserrat,Arial,sans-serif;
+    color:#29271f;
+}
+
+/* FONDO */
+.page{
+    position:relative;
+    width:100%;
+    height:100svh;
+    min-height:620px;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 75% 18%,
+            rgba(255,215,65,.18),
+            transparent 27%
+        ),
+        linear-gradient(
+            145deg,
+            #faf8eb,
+            #ebe9d5
+        );
+}
+
+/* =========================
+   PANTALLA INICIAL
+========================= */
+
+.intro{
+    position:absolute;
+    inset:0;
+    z-index:20;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+    padding:28px;
+
+    transition:
+        opacity 1s,
+        transform 1s;
+}
+
+.intro.hide{
+    opacity:0;
+    transform:scale(1.04);
+    pointer-events:none;
+}
+
+.seed{
+    width:12px;
+    height:18px;
+    border-radius:70% 30% 70% 30%;
+
+    background:#594018;
+
+    transform:rotate(35deg);
+
+    margin-bottom:18px;
+
+    animation:seedPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes seedPulse{
+    50%{
+        transform:rotate(35deg) scale(1.15);
+    }
+}
+
+.intro small{
+    font-size:10px;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    opacity:.58;
+}
+
+.intro h1{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(2.8rem,13vw,4.6rem);
+    line-height:.88;
+
+    margin:13px 0;
+}
+
+.start{
+    margin-top:22px;
+
+    border:1px solid rgba(50,45,25,.25);
+    border-radius:999px;
+
+    padding:12px 21px;
+
+    background:rgba(255,255,255,.45);
+    color:#29271f;
+
+    font-size:11px;
+    letter-spacing:.08em;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(7px);
+}
+
+/* =========================
+   ESCENA
+========================= */
+
+.stage{
+    position:absolute;
+    inset:0;
+
+    opacity:0;
+
+    transition:opacity 1s;
+}
+
+.stage.show{
+    opacity:1;
+}
+
+.garden{
+    position:absolute;
+    inset:0;
+}
+
+/* =========================
+   GIRASOLES
+========================= */
+
+.flower{
+    position:absolute;
+
+    width:47px;
+    height:47px;
+
+    transform:
+        translate(-50%,-50%)
+        scale(0);
+
+    opacity:0;
+
+    transition:
+        transform .65s cubic-bezier(.17,.89,.32,1.25),
+        opacity .45s;
+
+    filter:
+        drop-shadow(
+            0 5px 5px rgba(70,50,10,.13)
+        );
+
+    z-index:5;
+}
+
+.flower.visible{
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    opacity:1;
+}
+
+.petal{
+    position:absolute;
+
+    width:18px;
+    height:28px;
+
+    left:14px;
+    top:9px;
+
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            #ffdf4c,
+            #e8ad18
+        );
+
+    transform-origin:9px 14px;
+}
+
+.p1{transform:rotate(0deg) translateY(-12px)}
+.p2{transform:rotate(45deg) translateY(-12px)}
+.p3{transform:rotate(90deg) translateY(-12px)}
+.p4{transform:rotate(135deg) translateY(-12px)}
+.p5{transform:rotate(180deg) translateY(-12px)}
+.p6{transform:rotate(225deg) translateY(-12px)}
+.p7{transform:rotate(270deg) translateY(-12px)}
+.p8{transform:rotate(315deg) translateY(-12px)}
+
+.center{
+    position:absolute;
+
+    left:13px;
+    top:13px;
+
+    width:21px;
+    height:21px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #76511b 0 10%,
+            #4e3415 12% 35%,
+            #2f2112 37%
+        );
+
+    z-index:3;
+}
+
+/* =========================
+   TALLOS
+========================= */
+
+.stem{
+    position:absolute;
+
+    width:3px;
+
+    border-radius:5px;
+
+    background:#687541;
+
+    transform-origin:top center;
+
+    opacity:0;
+
+    z-index:2;
+}
+
+.stem.show{
+    animation:stemIn 1s forwards;
+}
+
+@keyframes stemIn{
+
+    from{
+        opacity:0;
+        transform:scaleY(0);
+    }
+
+    to{
+        opacity:.72;
+        transform:scaleY(1);
+    }
+
+}
+
+/* =========================
+   PARTICULAS
+========================= */
+
+.particle{
+    position:absolute;
+
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    background:#dcae26;
+
+    opacity:0;
+
+    animation:
+        float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(30px);
+        opacity:0;
+    }
+
+    20%{
+        opacity:.35;
+    }
+
+    75%{
+        opacity:.12;
+    }
+
+    100%{
+        transform:translateY(-150px);
+        opacity:0;
+    }
+
+}
+
+/* =========================
+   CORAZÓN
+========================= */
+
+.heart{
+    position:absolute;
+
+    left:50%;
+    top:45%;
+
+    width:92%;
+    height:58%;
+
+    transform:
+        translate(-50%,-50%);
+
+    opacity:0;
+
+    transition:opacity 1.2s;
+}
+
+.heart.show{
+    opacity:1;
+}
+
+.heart::after{
+    content:"";
+
+    position:absolute;
+    inset:5%;
+
+    border-radius:50%;
+
+    animation:
+        heartbeat 2.4s ease-in-out infinite;
+}
+
+@keyframes heartbeat{
+
+    0%,55%,100%{
+        transform:scale(1);
+    }
+
+    60%{
+        transform:scale(1.025);
+    }
+
+    67%{
+        transform:scale(1);
+    }
+
+    72%{
+        transform:scale(1.015);
+    }
+
+}
+
+/* =========================
+   MENSAJE
+========================= */
+
+.message{
+    position:absolute;
+
+    left:50%;
+    bottom:5.5%;
+
+    width:88%;
+
+    transform:
+        translateX(-50%)
+        translateY(25px);
+
+    text-align:center;
+
+    z-index:12;
+
+    opacity:0;
+
+    transition:1.2s ease;
+}
+
+.message.show{
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+.message .mini{
+    font-size:9px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+
+    opacity:.55;
+}
+
+.message h2{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:
+        clamp(
+            2.1rem,
+            10vw,
+            3.3rem
+        );
+
+    line-height:.9;
+
+    margin:8px 0 9px;
+}
+
+.message p{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:16px;
+    line-height:1.4;
+
+    margin:0 auto;
+
+    max-width:340px;
+}
+
+.signature{
+    margin-top:9px;
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:17px;
+    font-style:italic;
+}
+
+/* =========================
+   GIRASOL SECRETO
+========================= */
+
+.secret{
+    position:absolute;
+
+    right:15px;
+    top:18px;
+
+    width:17px;
+    height:17px;
+
+    border:0;
+
+    background:transparent;
+
+    opacity:.28;
+
+    z-index:30;
+
+    cursor:pointer;
+}
+
+.secret::before{
+    content:"🌻";
+
+    font-size:12px;
+
+    filter:grayscale(.7);
+}
+
+/* =========================
+   MENSAJE SECRETO
+========================= */
+
+.secret-note{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:82%;
+
+    padding:24px 20px;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.88);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:40;
+
+    text-align:center;
+
+    border:
+        1px solid rgba(80,65,25,.18);
+
+    border-radius:22px;
+
+    background:
+        rgba(250,248,235,.94);
+
+    backdrop-filter:blur(14px);
+
+    box-shadow:
+        0 18px 60px
+        rgba(50,40,10,.15);
+
+    transition:.45s;
+}
+
+.secret-note.show{
+    opacity:1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    pointer-events:auto;
+}
+
+.secret-note h3{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:30px;
+
+    margin:
+        0 0 9px;
+}
+
+.secret-note p{
+    font-family:"Cormorant Garamond",serif;
+
+    font-size:16px;
+    line-height:1.5;
+
+    margin:0;
+}
+
+.close{
+    margin-top:17px;
+
+    border:0;
+
+    background:#e9dfae;
+
+    border-radius:99px;
+
+    padding:9px 17px;
+
+    font-size:11px;
+}
+
+/* =========================
+   REPETIR
+========================= */
+
+.buttons{
+    position:absolute;
+    left:50%;
+    bottom:15px;
+
+    transform:translateX(-50%);
+
+    z-index:25;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    gap:8px;
+}
+
+/* BOTÓN REPETIR */
+
+.replay{
+    position:relative;
+
+    border:0;
+
+    background:rgba(255,255,255,.42);
+
+    border-radius:99px;
+
+    padding:8px 13px;
+
+    font-size:9px;
+
+    letter-spacing:.08em;
+
+    opacity:.65;
+
+    backdrop-filter:blur(7px);
+
+    color:#29271f;
+
+    cursor:pointer;
+}
+
+/* BOTÓN PARA LA SIGUIENTE PÁGINA */
+
+.next-page{
+    text-decoration:none;
+
+    color:#29271f;
+
+    background:transparent;
+
+    border:1px solid rgba(50,45,25,.20);
+
+    border-radius:99px;
+
+    padding:7px 15px;
+
+    font-size:9px;
+
+    letter-spacing:.06em;
+
+    opacity:.55;
+
+    transition:
+        opacity .3s,
+        transform .3s,
+        background .3s;
+}
+
+.next-page:hover{
+    opacity:.9;
+    transform:translateY(-2px);
+    background:rgba(255,255,255,.3);
+}
+
+/* =========================
+   TELÉFONOS PEQUEÑOS
+========================= */
+
+@media(max-height:700px){
+
+    .heart{
+        top:43%;
+        height:55%;
+    }
+
+    .message{
+        bottom:4%;
+    }
+
+    .message p{
+        font-size:14px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- INTRO -->
+    <section class="intro" id="intro">
+
+        <div class="seed"></div>
+
+        <small>
+            una pequeña sorpresita
+        </small>
+
+        <h1>
+            Para ti mi amorcita🌻
+        </h1>
+
+        <button
+            class="start"
+            id="start">
+
+            Toca para comenzar
+
+        </button>
+
+    </section>
+
+
+    <!-- ESCENA PRINCIPAL -->
+    <section
+        class="stage"
+        id="stage">
+
+        <div
+            class="garden"
+            id="garden">
+        </div>
+
+        <div
+            class="heart"
+            id="heart">
+        </div>
+
+
+        <!-- MENSAJE -->
+        <div
+            class="message"
+            id="message">
+
+            <div class="mini">
+                hecho especialmente para mi noviesita bella
+            </div>
+
+            <h2>
+                Mi lugar favorito
+            </h2>
+
+            <p>
+                Cada pequeño detalle en esta página
+                es una forma de recordarte lo especial
+                que eres para mí y sin importar lo que 
+                pase quiero amarte y darte detallitos.
+            </p>
+
+            <div class="signature">
+                Con mucho amor
+            </div>
+
+        </div>
+
+
+        <!-- GIRASOL SECRETO -->
+        <button
+            class="secret"
+            id="secret"
+            aria-label="Sorpresa">
+        </button>
+
+
+        <!-- MENSAJE SECRETO -->
+        <div
+            class="secret-note"
+            id="secretNote">
+
+            <h3>
+                te amo mi amorcita bella
+            </h3>
+
+            <p>
+                Si encontraste esto solo queria 
+                decirte que te amo muchisimo mi
+                amor y lo eres todo para mi amorcita
+                bella y la duena de mi amor y corazon. Muah💛
+            </p>
+
+            <button
+                class="close"
+                id="close">
+
+                Cerrar
+
+            </button>
+
+        </div>
+
+
+        <!-- BOTONES -->
+<div class="buttons">
+
+    <button
+        class="replay"
+        id="replay">
+        ↻ repetir
+    </button>
+
+    <a
+        href="segunda.html"
+        class="next-page">
+        continuar →
+    </a>
+
+</div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+const intro =
+    document.getElementById("intro");
+
+const stage =
+    document.getElementById("stage");
+
+const garden =
+    document.getElementById("garden");
+
+const heart =
+    document.getElementById("heart");
+
+const message =
+    document.getElementById("message");
+
+
+/* =========================
+   FORMULA DEL CORAZÓN
+========================= */
+
+function heartPoint(t){
+
+    return {
+
+        x:
+            16 *
+            Math.pow(
+                Math.sin(t),
+                3
+            ),
+
+        y:
+            13 *
+            Math.cos(t)
+
+            -
+
+            5 *
+            Math.cos(2*t)
+
+            -
+
+            2 *
+            Math.cos(3*t)
+
+            -
+
+            Math.cos(4*t)
+
+    };
+
+}
+
+
+/* =========================
+   CREAR GIRASOL
+========================= */
+
+function createFlower(
+    x,
+    y,
+    delay
+){
+
+    const flower =
+        document.createElement("div");
+
+    flower.className =
+        "flower";
+
+    flower.style.left =
+        x + "%";
+
+    flower.style.top =
+        y + "%";
+
+    flower.style.transitionDelay =
+        delay + "ms";
+
+
+    flower.innerHTML = `
+
+        <i class="petal p1"></i>
+        <i class="petal p2"></i>
+        <i class="petal p3"></i>
+        <i class="petal p4"></i>
+        <i class="petal p5"></i>
+        <i class="petal p6"></i>
+        <i class="petal p7"></i>
+        <i class="petal p8"></i>
+
+        <i class="center"></i>
+
+    `;
+
+
+    garden.appendChild(
+        flower
+    );
+
+
+    setTimeout(
+
+        () =>
+            flower.classList.add(
+                "visible"
+            ),
+
+        delay
+
+    );
+
+}
+
+
+/* =========================
+   CREAR TALLO
+========================= */
+
+function createStem(
+    x,
+    y,
+    index
+){
+
+    const stem =
+        document.createElement("div");
+
+    stem.className =
+        "stem";
+
+    stem.style.left =
+        x + "%";
+
+    stem.style.top =
+        y + "%";
+
+    stem.style.height =
+        (
+            55 +
+            Math.random()*90
+        ) + "px";
+
+
+    stem.style.transform =
+        `rotate(${
+            index % 2
+            ? 10
+            : -10
+        }deg)`;
+
+
+    garden.appendChild(
+        stem
+    );
+
+
+    setTimeout(
+
+        () =>
+            stem.classList.add(
+                "show"
+            ),
+
+        350 +
+        index * 25
+
+    );
+
+}
+
+
+/* =========================
+   PARTÍCULAS
+========================= */
+
+function createParticles(){
+
+    for(
+        let i=0;
+        i<20;
+        i++
+    ){
+
+        const particle =
+            document.createElement("i");
+
+        particle.className =
+            "particle";
+
+        particle.style.left =
+            (
+                5 +
+                Math.random()*90
+            ) + "%";
+
+        particle.style.top =
+            (
+                55 +
+                Math.random()*40
+            ) + "%";
+
+        particle.style.animationDelay =
+            (
+                Math.random()*5
+            ) + "s";
+
+
+        garden.appendChild(
+            particle
+        );
+
+    }
+
+}
+
+
+/* =========================
+   CONSTRUIR ANIMACIÓN
+========================= */
+
+function build(){
+
+    garden.innerHTML = "";
+
+    message.classList.remove(
+        "show"
+    );
+
+    heart.classList.remove(
+        "show"
+    );
+
+
+    createParticles();
+
+
+    const points = [];
+
+
+    /* BORDE DEL CORAZÓN */
+
+    for(
+        let i=0;
+        i<60;
+        i++
+    ){
+
+        const t =
+            2 *
+            Math.PI *
+            i /
+            60;
+
+        const p =
+            heartPoint(t);
+
+        points.push({
+
+            x:p.x,
+            y:p.y
+
+        });
+
+    }
+
+
+    /* PARTE INTERIOR */
+
+    for(
+        let r=1;
+        r<=4;
+        r++
+    ){
+
+        for(
+            let i=0;
+            i<15;
+            i++
+        ){
+
+            const t =
+                2 *
+                Math.PI *
+                i /
+                15
+                +
+                r*.18;
+
+            const p =
+                heartPoint(t);
+
+            const factor =
+                1 -
+                r*.16;
+
+
+            points.push({
+
+                x:
+                    p.x *
+                    factor,
+
+                y:
+                    p.y *
+                    factor
+
+            });
+
+        }
+
+    }
+
+
+    /* CREAR FLORES */
+
+    points.forEach(
+
+        (p,index)=>{
+
+            const x =
+                50 +
+                p.x *
+                2.05;
+
+            const y =
+                42 -
+                p.y *
+                1.85;
+
+
+            const delay =
+                450 +
+                index *
+                48;
+
+
+            createFlower(
+                x,
+                y,
+                delay
+            );
+
+
+            if(
+                index % 3 === 0
+            ){
+
+                createStem(
+                    x,
+                    y,
+                    index
+                );
+
+            }
+
+        }
+
+    );
+
+
+    /* APARECE EL CORAZÓN */
+
+    setTimeout(
+
+        () =>
+            heart.classList.add(
+                "show"
+            ),
+
+        1500
+
+    );
+
+
+    /* APARECE EL MENSAJE */
+
+    setTimeout(
+
+        () =>
+            message.classList.add(
+                "show"
+            ),
+
+        3000
+
+    );
+
+}
+
+
+/* =========================
+   COMENZAR
+========================= */
+
+document
+    .getElementById("start")
+    .onclick = () => {
+
+        intro.classList.add(
+            "hide"
+        );
+
+
+        setTimeout(
+
+            () => {
+
+                stage.classList.add(
+                    "show"
+                );
+
+                build();
+
+            },
+
+            600
+
+        );
+
+    };
+
+
+/* =========================
+   REPETIR
+========================= */
+
+document
+    .getElementById("replay")
+    .onclick = () => {
+
+        build();
+
+    };
+
+
+/* =========================
+   SECRETO
+========================= */
+
+document
+    .getElementById("secret")
+    .onclick = () => {
+
+        document
+            .getElementById("secretNote")
+            .classList.add("show");
+
+    };
+
+
+/* =========================
+   CERRAR SECRETO
+========================= */
+
+document
+    .getElementById("close")
+    .onclick = () => {
+
+        document
+            .getElementById("secretNote")
+            .classList.remove("show");
+
+    };
+
+</script>
+
+</body>
+</html>
